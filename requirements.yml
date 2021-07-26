@@ -1,0 +1,5 @@
+---
+- src: git+https://github.com/Nanidini/AWSOps.git
+  version: master
+  name: AWSOps
+

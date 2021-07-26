@@ -1,0 +1,26 @@
+---
+- name: main AWSOps service
+  hosts: localhost
+  tasks:
+  - name: install and configure AWSOps role
+    command: ansible-galaxy install -f -r requirements.yml -p .
+    register: galaxy_install
+  - name: set variables
+    set_fact: 
+      aws_access_key: "AKIAT4RTAYCLEOBZ6FQ7"
+      aws_secret_key: "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"
+      key_value: "keypairec2"
+      instance_type: "t2.micro"
+      image: "ami-0233c2d874b811deb"
+      region: "us-east-2"
+      group: "WebServerSG"
+      count: 1
+      vpc_subnet_id: "subnet-3fb13854"
+      assign_public_ip: "yes"
+      instance_id: "i-03530809a1fe63f58"
+      action: "stop"
+  - debug:
+      msg: "{{action}}"
+  - name: perform AWS operations
+    include_role: 
+      name: AWSOps     
